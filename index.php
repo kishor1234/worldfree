@@ -51,7 +51,10 @@ switch (ENVIRONMENT)
  */
 
 //New Code
-$protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://';
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+    $domainName = $_SERVER['HTTP_HOST'].'/';
+   $full_url= $protocol.$domainName;
+ 
 $full_url=$protocol.$_SERVER['HTTP_HOST']."/";
 define('ASETS',$full_url);//define('ASETS',$full_url."assets");
 $hostUrl=$_SERVER['HTTP_HOST'];
