@@ -1,0 +1,16 @@
+User-Agent: *
+Disallow: /
+
+User-Agent: Googlebot
+Allow: /public_html
+
+User-Agent: Googlebot-Mobile
+Allow: /public_html
+
+User-Agent: Googlebot-Image
+Allow: /public_html
+
+User-Agent: Adsbot-Google
+Allow: /public_html
+
+Sitemap: http://worldfree4u2.com/sitemap.xml
