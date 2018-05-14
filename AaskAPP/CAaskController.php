@@ -1,5 +1,4 @@
 <?php
-
 defined('BASEPATH') OR exit('No direct script access allowed');
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -29,10 +28,9 @@ class CAaskController extends CI_Controller {
     public $actionObj;
     public $encript;
     public $adminDB;
-    public $slink="http://linkshrink.net/zvpG=http://ouo.io/s/vR3Mllgk?s=";
-    //public $mongoObject;
-    
+    public $slink = "http://linkshrink.net/zvpG=http://ouo.io/s/vR3Mllgk?s=";
 
+    //public $mongoObject;
     //put your code here
     public function __construct() {
         parent::__construct();
@@ -62,17 +60,14 @@ class CAaskController extends CI_Controller {
 
     public function create() {
         $this->encript = new CStringEncDec();
-        if(!isset($_SESSION["viewConfig"]) && !isset($_SESSION["controllerAppConfig"]))
-        {
-        $_SESSION["viewConfig"] = $this->listFolderFiles(getcwd() . "/" . APPLICATION . "/views");//array fo view files
-        $_SESSION["controllerAppConfig"] = $this->listFolderFiles(getcwd() . "/" . APPLICATION . "/controllers/");//array of controllers
-        $this->viewConfig=$_SESSION["viewConfig"];
-        $this->controllerAppConfig=$_SESSION["controllerAppConfig"];        
-        }
-        else
-        {
-            $this->viewConfig=$_SESSION["viewConfig"];
-            $this->controllerAppConfig=$_SESSION["controllerAppConfig"];
+        if (!isset($_SESSION["viewConfig"]) && !isset($_SESSION["controllerAppConfig"])) {
+            $_SESSION["viewConfig"] = $this->listFolderFiles(getcwd() . "/" . APPLICATION . "/views"); //array fo view files
+            $_SESSION["controllerAppConfig"] = $this->listFolderFiles(getcwd() . "/" . APPLICATION . "/controllers/"); //array of controllers
+            $this->viewConfig = $_SESSION["viewConfig"];
+            $this->controllerAppConfig = $_SESSION["controllerAppConfig"];
+        } else {
+            $this->viewConfig = $_SESSION["viewConfig"];
+            $this->controllerAppConfig = $_SESSION["controllerAppConfig"];
         }
         return;
     }
@@ -82,12 +77,12 @@ class CAaskController extends CI_Controller {
     }
 
     public function execute() {
-        
+
         return;
     }
 
     public function finalize() {
-        
+
         return;
     }
 
@@ -110,9 +105,9 @@ class CAaskController extends CI_Controller {
         return true;
     }
 
-    function viewSpacific($viewName, $flag, $header, $footer,$data) {
+    function viewSpacific($viewName, $flag, $header, $footer, $data) {
         $data["obj"] = $this->encript;
-        $data["main"]=$this;
+        $data["main"] = $this;
         if ($flag == true) {
             $this->load->view($this->viewConfig[$header], $data);
             $this->load->view($this->viewConfig[$viewName], $data);
@@ -130,44 +125,45 @@ class CAaskController extends CI_Controller {
             $this->load->view($this->viewConfig[$viewName], $data);
             $this->load->view($this->viewConfig["footer"], $data);
         } else {
-            
+
             $this->load->view($this->viewConfig[$viewName], $data);
         }
     }
-    public function test()
-    {
+
+    public function test() {
         return "work";
     }
+
     public function isLoadView($viewName, $flag, $data) {
         $data["obj"] = $this->encript;
-        $data["main"]=$this;
+        $data["main"] = $this;
         if ($flag == true) {
             $this->load->view($this->viewConfig["header"], $data);
             $this->load->view($this->viewConfig[$viewName], $data);
             $this->load->view($this->viewConfig["footer"], $data);
         } else {
-            
+
             $this->load->view($this->viewConfig[$viewName], $data);
         }
     }
 
-    /*function loadClasses() {
+    /* function loadClasses() {
 
-        foreach ($this->requestArray as $key => $val) {
-            switch ($key) {
-                case "module":
-                    require_once getcwd() . "/" . APPLICATION . "/controllers/" . $this->controllerAppConfig[$val];
-                    break;
-                case "action":
-                    require_once getcwd() . "/" . aaskModel . $this->modelConfig[$val];
-                    //$this->actionObj=new $val;
-                    break;
-                    //die(getcwd()."/".APPLICATION."/controllers/".$this->controllerAppConfig["login"]);
-                    require_once getcwd() . "/" . APPLICATION . "/controllers/" . $this->controllerAppConfig["login"];
-                default:break;
-            }
-        }
-    }*/
+      foreach ($this->requestArray as $key => $val) {
+      switch ($key) {
+      case "module":
+      require_once getcwd() . "/" . APPLICATION . "/controllers/" . $this->controllerAppConfig[$val];
+      break;
+      case "action":
+      require_once getcwd() . "/" . aaskModel . $this->modelConfig[$val];
+      //$this->actionObj=new $val;
+      break;
+      //die(getcwd()."/".APPLICATION."/controllers/".$this->controllerAppConfig["login"]);
+      require_once getcwd() . "/" . APPLICATION . "/controllers/" . $this->controllerAppConfig["login"];
+      default:break;
+      }
+      }
+      } */
 
     function getClassName() {
 
@@ -190,7 +186,8 @@ class CAaskController extends CI_Controller {
                 if (is_dir($dir . '/' . $ff)) {
                     array_push($this->fileStack, $ff);
                     $this->listFolderFiles($dir . '/' . $ff);
-                } else { $ext = explode(".", $ff);
+                } else {
+                    $ext = explode(".", $ff);
                     if (isset($ext[1])) {
                         if (strcmp($ext[1], "php") == 0) {
                             $filePath = "";
@@ -222,30 +219,32 @@ class CAaskController extends CI_Controller {
     public function createDBO() {
 
         $tempObjArray = array();
+        //$tempObjArray["movies4k_db"] = new mysqli("localhost", "root", "root", "movies4k_db");
+        //$_SESSION["db_1"] = "movies4k_db";
         $tempObjArray["epiz_22066016_db"]  = new mysqli("sql113.epizy.com", "epiz_22066016", "Kishor123", "epiz_22066016_db");
         $_SESSION["db_1"]="epiz_22066016_db";
         return $tempObjArray;
     }
-    
-    /*public function createMongoDB() {
-        $config = array(
-            'username' => 'kishor',
-            'password' => 'kishor',
-            'dbname' => 'photo',
-            'connection_string' => sprintf('mongodb://%s:%d/%s', '127.0.0.1', '27017', 'admin')
-        );
-        try {
-            if (!class_exists('Mongo')) {
-                echo ("The MongoDB PECL extension has not been installed or enabled");
-                return false;
-            }
 
-            $connection = new \MongoClient($config['connection_string'], array('username' => $config['username'], 'password' => $config['password']));
-            return $this->mongoObject = $connection->selectDB($config['dbname']);
-        } catch (Exception $e) {
-            return false;
-        }
-    }*/
+    /* public function createMongoDB() {
+      $config = array(
+      'username' => 'kishor',
+      'password' => 'kishor',
+      'dbname' => 'photo',
+      'connection_string' => sprintf('mongodb://%s:%d/%s', '127.0.0.1', '27017', 'admin')
+      );
+      try {
+      if (!class_exists('Mongo')) {
+      echo ("The MongoDB PECL extension has not been installed or enabled");
+      return false;
+      }
+
+      $connection = new \MongoClient($config['connection_string'], array('username' => $config['username'], 'password' => $config['password']));
+      return $this->mongoObject = $connection->selectDB($config['dbname']);
+      } catch (Exception $e) {
+      return false;
+      }
+      } */
 
     public function updateQuery($sql, $db) {
 
@@ -256,16 +255,17 @@ class CAaskController extends CI_Controller {
             return false;
         }
     }
-    public function orderBy($order,$id)
-    {
-        return " ORDER BY ".$id." ".$order ." ";
+
+    public function orderBy($order, $id) {
+        return " ORDER BY " . $id . " " . $order . " ";
     }
-    public function getLastCount($table,$db,$id)
-    {
-        return "SELECT max(".$id.") FROM ".$db.".".$table." ";
+
+    public function getLastCount($table, $db, $id) {
+        return "SELECT max(" . $id . ") FROM " . $db . "." . $table . " ";
     }
+
     public function insert($table, $db, $data) {
-        
+
         $sql = "INSERT INTO " . $table;
         $t = "( ";
         $t2 = "( ";
@@ -283,108 +283,114 @@ class CAaskController extends CI_Controller {
         return $sql = $sql . " " . $t . " values " . $t2;
         //return $this->adminDB[$db]->query($sql);
     }
-    public function select($table,$db)
-    {
-        return "SELECT * FROM ".$db.".".$table." ";
+
+    public function select($table, $db) {
+        return "SELECT * FROM " . $db . "." . $table . " ";
         //return $this->adminDB[$db]->query($sql);
     }
-    public function selectDistinct($table,$id)
-    {
-        return "SELECT DISTINCT ".$id." FROM ".$table." ";
+
+    public function selectDistinct($table, $id) {
+        return "SELECT DISTINCT " . $id . " FROM " . $table . " ";
     }
 
-    public function where($data,$and)
-    {
-        $sql=" WHERE ";
-        $i=1;
-        foreach($data as $key=>$val)
-        {
-            if($i!=count($data))
-            {
-               $sql.=$key."=". "'" . $val . "'" ." ".$and." "; 
-            }else{
-                 $sql.=$key."=". "'" . $val . "'" ." "; 
+    public function where($data, $and) {
+        $sql = " WHERE ";
+        $i = 1;
+        foreach ($data as $key => $val) {
+            if ($i != count($data)) {
+                $sql.=$key . "=" . "'" . $val . "'" . " " . $and . " ";
+            } else {
+                $sql.=$key . "=" . "'" . $val . "'" . " ";
             }
             $i++;
         }
         return $sql;
     }
-    public function whereSingle($data)
-    {
-        $sql=" WHERE ";
-        $i=1;
-        foreach($data as $key=>$val)
-        {
-            if($i==count($data))
-            {
-               $sql.=$key."=". "'" . $val . "'"; 
+
+    public function whereSingle($data) {
+        $sql = " WHERE ";
+        $i = 1;
+        foreach ($data as $key => $val) {
+            if ($i == count($data)) {
+                $sql.=$key . "=" . "'" . $val . "'";
             }
         }
         return $sql;
     }
-    public function whereSingleLike($data)
-    {
-        $sql=" WHERE ";
-        $i=1;
-        foreach($data as $key=>$val)
-        {
-            if($i==count($data))
-            {
-               $sql.=$key." LIKE ". "'%" . $val . "%'"; 
+
+    public function whereSingleLike($data) {
+        $sql = " WHERE ";
+        $i = 1;
+        foreach ($data as $key => $val) {
+            if ($i == count($data)) {
+                $sql.=$key . " LIKE " . "'%" . $val . "%'";
             }
         }
         return $sql;
     }
-    public function whereSearchLike($coloum,$data)
-    {
-        $sql=" WHERE CONCAT_WS(";$i=1;
-        foreach($coloum as $val)
-        {
-            if($i==count($coloum))
-            {$sql.=$val;}
-            else{$sql.=$val.",";}
+
+    public function whereSearchLike($coloum, $data) {
+        $sql = " WHERE CONCAT_WS(";
+        $i = 1;
+        foreach ($coloum as $val) {
+            if ($i == count($coloum)) {
+                $sql.=$val;
+            } else {
+                $sql.=$val . ",";
+            }
             $i++;
         }
-        $sql.=" ) "; $i=1;
-        foreach($data as $key=>$val)
-        { if($i==count($data)) { $sql.=" LIKE ". "'%" . $val . "%'"; }  }
+        $sql.=" ) ";
+        $i = 1;
+        foreach ($data as $key => $val) {
+            if ($i == count($data)) {
+                $sql.=" LIKE " . "'%" . $val . "%'";
+            }
+        }
         return $sql;
     }
-    public function searchFullText($coloum,$data)
-    {
-        $sql=" WHERE MATCH(";$i=1;
-        foreach($coloum as $val)
-        {
-            if($i==count($coloum))
-            {$sql.=$val;}
-            else{$sql.=$val.",";}
+
+    public function searchFullText($coloum, $data) {
+        $sql = " WHERE MATCH(";
+        $i = 1;
+        foreach ($coloum as $val) {
+            if ($i == count($coloum)) {
+                $sql.=$val;
+            } else {
+                $sql.=$val . ",";
+            }
             $i++;
         }
-        $sql.=" ) AGAINST ( "; $i=1;
-        foreach($data as $key=>$val)
-        { if($i==count($data)) { $sql.=" ". "'" . $val . "'IN NATURAL LANGUAGE MODE )"; }  }
+        $sql.=" ) AGAINST ( ";
+        $i = 1;
+        foreach ($data as $key => $val) {
+            if ($i == count($data)) {
+                $sql.=" " . "'" . $val . "'IN NATURAL LANGUAGE MODE )";
+            }
+        }
         return $sql;
     }
-    public function selectCount($table,$col)
-    {
-        return "SELECT count(".$col.") FROM ".$table." "; 
+
+    public function selectCount($table, $col) {
+        return "SELECT count(" . $col . ") FROM " . $table . " ";
     }
-     public function selectSum($table,$col)
-    {
-        return "SELECT sum(".$col.") FROM ".$table." "; 
+
+    public function selectSum($table, $col) {
+        return "SELECT sum(" . $col . ") FROM " . $table . " ";
     }
-    public function limitWithOffset($offset,$limit)
-    {
-        return " LIMIT ".$offset." , ".$limit." ";
+
+    public function limitWithOffset($offset, $limit) {
+        return " LIMIT " . $offset . " , " . $limit . " ";
     }
-    public function limitWithOutOffset($limit)
-    {
-        return " LIMIT ".$limit." ";
+
+    public function limitWithOutOffset($limit) {
+        return " LIMIT " . $limit . " ";
     }
-    public function delete($table)
-    {
-        return "DELETE FROM ".$table." ";
+
+    public function delete($table) {
+        return "DELETE FROM " . $table . " ";
     }
+
     public function updateINC($data, $table) {
         $sql = " UPDATE  " . $table . " SET ";
         $i = 1;
@@ -399,35 +405,32 @@ class CAaskController extends CI_Controller {
         return $sql;
     }
 
-    public function update($data,$table)
-    {
-        $sql=" UPDATE  ".$table." SET ";
-        $i=1;
-        foreach($data as $key=>$val)
-        {
-            if($i!=count($data))
-            {
-               $sql.=$key."=". "'" . $val . "'" .", "; 
-            }else{
-                 $sql.=$key."=". "'" . $val . "'" ." "; 
+    public function update($data, $table) {
+        $sql = " UPDATE  " . $table . " SET ";
+        $i = 1;
+        foreach ($data as $key => $val) {
+            if ($i != count($data)) {
+                $sql.=$key . "=" . "'" . $val . "'" . ", ";
+            } else {
+                $sql.=$key . "=" . "'" . $val . "'" . " ";
             }
             $i++;
         }
         return $sql;
     }
-    public function checkURL($url) 
-    {
-        /*$ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_NOBODY, true);
-        curl_exec($ch);
-        $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        if ($code == 200) {
-            $status = true;
-        } else {
-            $status = false;
-        }
-        curl_close($ch);
-        return $status;*/
+
+    public function checkURL($url) {
+        /* $ch = curl_init($url);
+          curl_setopt($ch, CURLOPT_NOBODY, true);
+          curl_exec($ch);
+          $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+          if ($code == 200) {
+          $status = true;
+          } else {
+          $status = false;
+          }
+          curl_close($ch);
+          return $status; */
         return true;
     }
 
@@ -473,14 +476,15 @@ class CAaskController extends CI_Controller {
         mail($reciverEmail, $subject, $message, $headers);
         return true;
     }
-    public function sendMailBoth($form,$reciverEmail, $subject, $message) {
+
+    public function sendMailBoth($form, $reciverEmail, $subject, $message) {
 
         // Always set content-type when sending HTML email
         $headers = "MIME-Version: 1.0" . "\r\n";
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
         // More headers
-        $headers .= 'From: <'.$form.'>' . $form. "\r\n";
+        $headers .= 'From: <' . $form . '>' . $form . "\r\n";
         mail($reciverEmail, $subject, $message, $headers);
         return true;
     }
@@ -504,54 +508,50 @@ class CAaskController extends CI_Controller {
     }
 
     function isValidEmail($email) {
-        $result=$this->selectQuery("select * from users where email='$email'", "euser");
-        if($row=$result->fetch_assoc())
-        {
+        $result = $this->selectQuery("select * from users where email='$email'", "euser");
+        if ($row = $result->fetch_assoc()) {
             return true;
+        } else {
+            return false;
         }
- else {
-     return false;
- }
     }
 
     function isValidMobile($mobile) {
         if (!empty($mobile)) { // phone number is not empty
             if (preg_match('/^\d{10}$/', $mobile)) { // phone number is valid
-               return true;
+                return true;
                 // your other code here
             } else { // phone number is not valid
-               return false;
+                return false;
             }
         } else { // phone number is empty
             return false;
         }
     }
-    function isPasswordValid($password)
-    {
-        $passwordErr="";
-        if(!empty($password)) {
-           
-        if (strlen($password) <= '8') {
-            $passwordErr = "Your Password Must Contain At Least 8 Characters!";
+
+    function isPasswordValid($password) {
+        $passwordErr = "";
+        if (!empty($password)) {
+
+            if (strlen($password) <= '8') {
+                $passwordErr = "Your Password Must Contain At Least 8 Characters!";
+            } elseif (!preg_match("#[0-9]+#", $password)) {
+                $passwordErr = "Your Password Must Contain At Least 1 Number!";
+            } elseif (!preg_match("#[A-Z]+#", $password)) {
+                $passwordErr = "Your Password Must Contain At Least 1 Capital Letter!";
+            } elseif (!preg_match("#[a-z]+#", $password)) {
+                $passwordErr = "Your Password Must Contain At Least 1 Lowercase Letter!";
+            }
+            return $passwordErr;
         }
-        elseif(!preg_match("#[0-9]+#",$password)) {
-            $passwordErr = "Your Password Must Contain At Least 1 Number!";
-        }
-        elseif(!preg_match("#[A-Z]+#",$password)) {
-            $passwordErr = "Your Password Must Contain At Least 1 Capital Letter!";
-        }
-        elseif(!preg_match("#[a-z]+#",$password)) {
-            $passwordErr = "Your Password Must Contain At Least 1 Lowercase Letter!";
-        } 
-        return $passwordErr;
     }
-    }
-    function sendMailtoUser($email)
-    {
-        $message="<a href='".ASETS."/?r=".$this->encript->encdata('C_UserEmailVerify')."&q=".$this->encript->encdata($this->getID($email))."&d=".$this->encript->encdata(date("d-m-Y"))."'>Verify</a>";
+
+    function sendMailtoUser($email) {
+        $message = "<a href='" . ASETS . "/?r=" . $this->encript->encdata('C_UserEmailVerify') . "&q=" . $this->encript->encdata($this->getID($email)) . "&d=" . $this->encript->encdata(date("d-m-Y")) . "'>Verify</a>";
         $this->sendMail($this->filterPost("inputEmail"), "PB verification mail", $message);
         return $message;
     }
+
     public function dayCount($from, $to) {
         $first_date = strtotime($from);
         $second_date = strtotime($to);
@@ -559,99 +559,173 @@ class CAaskController extends CI_Controller {
         return floor($offset / 60 / 60 / 24);
     }
 
-public function whereBetweenDate($cl,$data,$and)
-    {
+    public function whereBetweenDate($cl, $data, $and) {
         //WHERE startTime BETWEEN '2010-04-29 00:00:00' AND '2010-04-29 23:59:59'
-        $sql=" WHERE ".$cl." BETWEEN ";
-        $i=1;
-        foreach($data as $key=>$val)
-        {
-            if($i!=count($data))
-            {
-               $sql.="'" . $val . "'" ." ".$and." "; 
-            }else{
-                 $sql.="'" . $val . "'" ." "; 
+        $sql = " WHERE " . $cl . " BETWEEN ";
+        $i = 1;
+        foreach ($data as $key => $val) {
+            if ($i != count($data)) {
+                $sql.="'" . $val . "'" . " " . $and . " ";
+            } else {
+                $sql.="'" . $val . "'" . " ";
             }
             $i++;
         }
         return $sql;
     }
-    
-    /*function getID($email)
-    {
-         $data = array(
-            "email" => $email
-        );
-        $cursor = $this->mongoObject->selectData("en_user", $data);
-        if ($cursor != false) {
-            $data=$cursor->getNext();
-            return $data["_id"];
-        }
-        return 0;
-    }*/
-    public function session_set($data)
-    {
-        foreach($data as $key=>$value)
-        {
-            $_SESSION[$key]=$value;
+
+    /* function getID($email)
+      {
+      $data = array(
+      "email" => $email
+      );
+      $cursor = $this->mongoObject->selectData("en_user", $data);
+      if ($cursor != false) {
+      $data=$cursor->getNext();
+      return $data["_id"];
+      }
+      return 0;
+      } */
+
+    public function session_set($data) {
+        foreach ($data as $key => $value) {
+            $_SESSION[$key] = $value;
         }
     }
-    public function session_get($key)
-    {
+
+    public function session_get($key) {
         return $_SESSION[$key];
     }
-    public function session_destrory()
-    {
+
+    public function session_destrory() {
         session_destroy();
     }
+
     public function printMessage($msg, $type) {
 
-        $mssg = '<div class="alert alert-dismissible alert-'.$type.'">';
+        $mssg = '<div class="alert alert-dismissible alert-' . $type . '">';
         $mssg.='<button type="button" class="close" data-dismiss="alert">&times;</button>';
         $mssg.=$msg;
         $mssg.='</div>';
         return $mssg;
     }
 
-    public function getIndianCurrency($number)
-    {
-    $decimal = round($number - ($no = floor($number)), 2) * 100;
-    $hundred = null;
-    $digits_length = strlen($no);
-    $i = 0;
-    $str = array();
-    $words = array(0 => '', 1 => 'one', 2 => 'two',
-        3 => 'three', 4 => 'four', 5 => 'five', 6 => 'six',
-        7 => 'seven', 8 => 'eight', 9 => 'nine',
-        10 => 'ten', 11 => 'eleven', 12 => 'twelve',
-        13 => 'thirteen', 14 => 'fourteen', 15 => 'fifteen',
-        16 => 'sixteen', 17 => 'seventeen', 18 => 'eighteen',
-        19 => 'nineteen', 20 => 'twenty', 30 => 'thirty',
-        40 => 'forty', 50 => 'fifty', 60 => 'sixty',
-        70 => 'seventy', 80 => 'eighty', 90 => 'ninety');
-    $digits = array('', 'hundred','thousand','lakh', 'crore');
-    while( $i < $digits_length ) {
-        $divider = ($i == 2) ? 10 : 100;
-        $number = floor($no % $divider);
-        $no = floor($no / $divider);
-        $i += $divider == 10 ? 1 : 2;
-        if ($number) {
-            $plural = (($counter = count($str)) && $number > 9) ? 's' : null;
-            $hundred = ($counter == 1 && $str[0]) ? ' and ' : null;
-            $str [] = ($number < 21) ? $words[$number].' '. $digits[$counter]. $plural.' '.$hundred:$words[floor($number / 10) * 10].' '.$words[$number % 10]. ' '.$digits[$counter].$plural.' '.$hundred;
-        } else $str[] = null;
+    public function getIndianCurrency($number) {
+        $decimal = round($number - ($no = floor($number)), 2) * 100;
+        $hundred = null;
+        $digits_length = strlen($no);
+        $i = 0;
+        $str = array();
+        $words = array(0 => '', 1 => 'one', 2 => 'two',
+            3 => 'three', 4 => 'four', 5 => 'five', 6 => 'six',
+            7 => 'seven', 8 => 'eight', 9 => 'nine',
+            10 => 'ten', 11 => 'eleven', 12 => 'twelve',
+            13 => 'thirteen', 14 => 'fourteen', 15 => 'fifteen',
+            16 => 'sixteen', 17 => 'seventeen', 18 => 'eighteen',
+            19 => 'nineteen', 20 => 'twenty', 30 => 'thirty',
+            40 => 'forty', 50 => 'fifty', 60 => 'sixty',
+            70 => 'seventy', 80 => 'eighty', 90 => 'ninety');
+        $digits = array('', 'hundred', 'thousand', 'lakh', 'crore');
+        while ($i < $digits_length) {
+            $divider = ($i == 2) ? 10 : 100;
+            $number = floor($no % $divider);
+            $no = floor($no / $divider);
+            $i += $divider == 10 ? 1 : 2;
+            if ($number) {
+                $plural = (($counter = count($str)) && $number > 9) ? 's' : null;
+                $hundred = ($counter == 1 && $str[0]) ? ' and ' : null;
+                $str [] = ($number < 21) ? $words[$number] . ' ' . $digits[$counter] . $plural . ' ' . $hundred : $words[floor($number / 10) * 10] . ' ' . $words[$number % 10] . ' ' . $digits[$counter] . $plural . ' ' . $hundred;
+            } else
+                $str[] = null;
+        }
+        $Rupees = implode('', array_reverse($str));
+        $paise = ($decimal) ? "." . ($words[$decimal / 10] . " " . $words[$decimal % 10]) . ' Paise' : '';
+        return ($Rupees ? $Rupees . 'Rupees ' : '') . $paise;
     }
-    $Rupees = implode('', array_reverse($str));
-    $paise = ($decimal) ? "." . ($words[$decimal / 10] . " " . $words[$decimal % 10]) . ' Paise' : '';
-    return ($Rupees ? $Rupees . 'Rupees ' : '') . $paise;
-}
-function displayNew($date)
-{
-    $currentDate=date("Y-m-d H:m:s");
-    $date1=date_create($currentDate);
-    $date2=date_create($date);
-    $diff=date_diff($date1,$date2);
-    return $diff->format("%a");
 
-}
+    function displayNew($date) {
+        $currentDate = date("Y-m-d H:m:s");
+        $date1 = date_create($currentDate);
+        $date2 = date_create($date);
+        $diff = date_diff($date1, $date2);
+        return $diff->format("%a");
+    }
+
+    public function checkChild($id) {
+        $sql = $this->select("comment", $_SESSION["db_1"]) . $this->where(array("comment_parent" => $id, "isActive" => 1), "AND");
+        $result = $this->adminDB[$_SESSION["db_1"]]->query($sql);
+        while ($rw = $result->fetch_assoc()) {
+            ?>
+            <div style="margin-left: 50px;">
+                <blockquote class="panel-danger">
+                    <div class="form-group">
+                        <div class="col-lg-1">
+                            <img src="assets/ap/dist/img/avatar5.png" class="user-image" style="height: 30px; width: auto;" alt="Image">
+
+                        </div>
+                        <div class="col-lg-11">
+                            <strong><?php echo $rw["name"]; ?></strong>
+                            <p><?php echo $rw["message"]; ?></p>
+                        </div>
+                    </div>
+
+                    <small><?php echo $rw["name"]; ?> &nbsp;&nbsp;&nbsp; post at <cite title="Source Title"><i class="fa fa-clock-o"></i> <?php echo $rw["isDate"]; ?></cite>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<cite><span><i class="fa fa-reply"></i><a href="javascript:void(0)" data-toggle="modal" data-target="#myModalC<?php echo $rw["id"];?>">Replay</a></span></cite></small>
+                    <div id="myModalC<?php echo $rw["id"];?>" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Replay Comment</h4>
+                                </div>
+                                <div class="modal-body" style="height:300px;">
+                                    <div id="msg<?php echo $rw["id"];?>"></div>
+                                    <form action="#" method="post" id="myForm<?php echo $rw["id"];?>" onsubmit="return postData('<?php echo $this->encript->encdata("C_AddComment"); ?>', '#msg<?php echo $rw["id"];?>', '#myForm<?php echo $rw["id"];?>')">
+                                                            <div class="form-group">
+                                                                <div class="col-lg-12">
+                                                                    <label>Message <span id="require">*</span></label>
+                                                                    <textarea name="message" id="message" class="form-control" placeholder="Message type here" required=""style="height: 100px;"></textarea>
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <div class="col-lg-6">
+                                                                    <div class="form-group">
+                                                                         <label>Name <span id="require">*</span></label>
+                                                                        <input type="text" class="form-control" name="name" id="name" required="" placeholder="Enter Name" value="" autocomplete="off">
+                                                                        <input type="hidden" name="post_id" id="post_id" readonly value="<?php echo $rw["post_id"]; ?>">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="form-group">
+                                                                         <label>Email <span id="require">*</span></label>
+                                                                        <input type="hidden" name="comment_parent" id="comment_parent" value="<?php echo $rw["id"];?>">
+                                                                        <input type="email" class="form-control" name="email" id="email" value="" required="" placeholder="Enter Email" autocomplete="off">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <div class="col-lg-12"><br>
+                                                                    <input type="submit" value="Send" class="btn btn-danger btn-sm">
+                                                                </div>
+                                                            </div>
+                                                        </form> 
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </blockquote>
+            </div>
+            <?php
+            $this->checkChild($rw["id"]);
+        }
+    }
+
 }
