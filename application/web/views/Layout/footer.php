@@ -205,7 +205,13 @@
 
   gtag('config', 'UA-110926232-1');
 </script>
-
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5871156475594643",
+    enable_page_level_ads: true
+  });
+</script>
 <script type="text/javascript">
   (sc_adv_out = window.sc_adv_out || []).push({
     id : "448685",

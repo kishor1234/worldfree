@@ -14,11 +14,15 @@ and open the template in the editor.
     <body>
         <center>
     <?php
-   if(isset($_POST)){ echo urlencode($_POST["amt"]);}
+   if(isset($_POST)){ echo urlencode($_POST["amt"]);
+   
+   echo "<br>";
+   echo urldecode($_POST["amt"]);
+   }
 ?>
 
         
-        <form action="http://worldfree4u2.com/test.php" method="post">
+        <form action="test.php" method="post">
             <lable>Enter URL:</lable>
             <input type="text" name="amt">
             <input type="submit" value="Encode">
