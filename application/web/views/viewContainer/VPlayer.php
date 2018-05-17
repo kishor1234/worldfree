@@ -25,7 +25,8 @@
 
         <div class="page-content">
             <div class="row page-row">
-                <div class="news-wrapper col-lg-8">                         
+                <div class="news-wrapper col-lg-8">  
+                    <h1>Watch Online Video</h1>
                     <script>
                         function failed(e) {
                             // video playback failed - show a message saying why
