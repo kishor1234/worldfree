@@ -20,7 +20,7 @@
         max-width: 150px;
     }
     video {
-    width: 100%;
+    width: 80%;
     height: auto;
 }
 </style>
