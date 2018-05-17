@@ -49,7 +49,7 @@
                         }
                     </script>
 
-                    <video style="width: 750px;" src="<?php echo $_SESSION["vurl"]; ?>" type='video/x-matroska; codecs="theora, vorbis"' autoplay controls onerror="failed(event)"  ></video>
+                    <video style="width: auto;" src="<?php echo $_SESSION["vurl"]; ?>" type='video/x-matroska; codecs="theora, vorbis"' autoplay controls onerror="failed(event)"  ></video>
 
 
                 </div><!--//news-wrapper-->
