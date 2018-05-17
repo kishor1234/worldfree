@@ -33,7 +33,20 @@ class C_OpenLink extends CAaskController {
         $choise=$this->encript->decdata($_REQUEST["v"]);
         if(array_key_exists($choise, $this->viewConfig))
         {
-            $this->isLoadView($choise, false, array());
+            switch($choise)
+            {
+                case 'VPlayer':
+                    if(isset($_REQUEST["p"])){$_SESSION["vurl"]=urldecode($_REQUEST["p"]);
+                    redirect("https://worldfree4u2.com?r=".$this->encript->encdata("C_OpenLink") . "&v=" . $this->encript->encdata("VPlayer")."");
+                    }else{
+                        $this->isLoadView($choise, false, array()); 
+                    }
+                    break;
+                default :
+                     $this->isLoadView($choise, false, array());
+                    break;
+            }
+           
         }  else {
              $this->isLoadView("PageNotFount404", false, array());
         }
