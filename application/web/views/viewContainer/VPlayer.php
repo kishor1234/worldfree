@@ -19,6 +19,10 @@
         text-overflow: ellipsis;
         max-width: 150px;
     }
+    video {
+    width: 100%;
+    height: auto;
+}
 </style>
 <div class="content container">
     <div class="page-wrapper">
@@ -50,7 +54,7 @@
                         }
                     </script>
 
-                    <video style="width: auto;" src="<?php echo $_SESSION["vurl"]; ?>" type='video/x-matroska; codecs="theora, vorbis"' autoplay controls onerror="failed(event)"  ></video>
+                    <video src="<?php echo $_SESSION["vurl"]; ?>" type='video/x-matroska; codecs="theora, vorbis"' autoplay controls onerror="failed(event)"  ></video>
 
 
                 </div><!--//news-wrapper-->
