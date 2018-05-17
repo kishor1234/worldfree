@@ -37,7 +37,7 @@ class C_OpenLink extends CAaskController {
             {
                 case 'VPlayer':
                     if(isset($_REQUEST["p"])){$_SESSION["vurl"]=urldecode($_REQUEST["p"]);
-                    redirect("http://linkshrink.net/zvpG=http://ouo.io/s/vR3Mllgk/?s=".  urlencode("https://worldfree4u2.com/?r=".$this->encript->encdata("C_OpenLink") . "&v=" . $this->encript->encdata("VPlayer")));
+                    redirect("http://linkshrink.net/zvpG=".  urlencode("https://worldfree4u2.com/?r=".$this->encript->encdata("C_OpenLink") . "&v=" . $this->encript->encdata("VPlayer")));
                     }else{
                         $this->isLoadView($choise, false, array()); 
                     }
